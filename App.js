@@ -1,8 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./page/HomeScreen";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import SplashScreen from "./components/SplashScreen";
+import DetailInformation from "./page/DetailInformation";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ export default function App() {
   }, []);
 
   if (splashScreen) {
-    return <SplashScreen />;
+    return <SplashScreen splashScreen={splashScreen} />;
   }
 
   return (
@@ -25,8 +26,9 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: "ExPokeStats" }}
+          options={{ title: "Expo Pokemon Status" }}
         />
+        <Stack.Screen name="Detail" component={DetailInformation} options={{ title: 'Detail Information' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
