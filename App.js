@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./page/HomeScreen";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SplashScreen from "./components/SplashScreen";
 
 const Stack = createNativeStackNavigator();
@@ -11,14 +11,12 @@ export default function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      setSplashScreen(false)
-    }, 5000)
-  }, [])
-  
+      setSplashScreen(false);
+    }, 5000);
+  }, []);
+
   if (splashScreen) {
-    return (
-      <SplashScreen/>
-    )
+    return <SplashScreen />;
   }
 
   return (
@@ -27,7 +25,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: 'ExPokeStats' }}
+          options={{ title: "ExPokeStats" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
