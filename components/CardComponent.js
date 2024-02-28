@@ -1,10 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-function CardComponent() {
+function CardComponent({
+  name,
+  number
+}) {
   return (
       <View>
-        <Text style={styles.title}>This is a card</Text>
+        <Text style={styles.title}>{name} {number}</Text>
       </View>
   );
 }

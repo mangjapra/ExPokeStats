@@ -4,6 +4,10 @@ import HomeScreen from "./page/HomeScreen";
 import { useEffect, useState } from "react";
 import SplashScreen from "./components/SplashScreen";
 import DetailInformation from "./page/DetailInformation";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import { allReducer } from "./redux";
+import { thunk } from "redux-thunk";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,16 +24,25 @@ export default function App() {
     return <SplashScreen splashScreen={splashScreen} />;
   }
 
+  const store = createStore(allReducer, applyMiddleware(thunk))
+  store.subscribe(() => console.log("subscribe: ", store.getState()))
+
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: "Expo Pokemon Status" }}
-        />
-        <Stack.Screen name="Detail" component={DetailInformation} options={{ title: 'Detail Information' }} />
-      </Stack.Navigator>
+      <Provider store={store}>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ title: "Expo Pokemon Status" }}
+          />
+          <Stack.Screen
+            name="Detail"
+            component={DetailInformation}
+            options={{ title: "Detail Information" }}
+          />
+        </Stack.Navigator>
+      </Provider>
     </NavigationContainer>
   );
 }
