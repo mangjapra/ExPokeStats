@@ -10,11 +10,11 @@ import {
 import CardComponent from "../components/CardComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { getListPokemon } from "../redux/global/action";
+import SplashScreen from "../components/SplashScreen";
 
 function HomeScreen({ navigation }) {
   const dispatch = useDispatch();
   const fadeAnim = useRef(new Animated.Value(0)).current;
-
   const { listpokemon } = useSelector((state) => state.reducerGlobal);
 
   useEffect(() => {
@@ -26,6 +26,10 @@ function HomeScreen({ navigation }) {
     dispatch(getListPokemon());
   }, [fadeAnim]);
 
+  if (!listpokemon) {
+    return <SplashScreen />;
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -36,7 +40,7 @@ function HomeScreen({ navigation }) {
                 key={index}
                 onPress={() => navigation.navigate("Detail")}
               >
-                <CardComponent name={res.name} number={index + 1} />
+                <CardComponent name={res.name} imageSource={res.sprites.other.dream_world.front_default}/>
               </TouchableOpacity>
             );
           })}
@@ -51,8 +55,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
     padding: 10,
   },
 });

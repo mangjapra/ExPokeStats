@@ -1,30 +1,36 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { SvgUri } from 'react-native-svg';
 
 function CardComponent({
   name,
-  number
+  imageSource,
 }) {
   return (
-      <View>
-        <Text style={styles.title}>{name} {number}</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>{name}</Text>
+        <SvgUri height={125} width={125} uri={ imageSource } /> 
       </View>
   );
 }
 
 const styles = StyleSheet.create({
   title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: "#20232a",
-    borderRadius: 6,
-    backgroundColor: "#61dafb",
-    color: "#20232a",
-    textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
+    fontSize: 40,
+    fontWeight: '500',
+    marginBottom: 'auto',
+    marginTop: 'auto',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    color: 'white',
   },
+  container: {
+    flexDirection: 'row',
+    padding: 10,
+    backgroundColor: '#4AB05C',
+    margin: 10,
+    borderRadius: 8,
+  }
 });
 
 export default CardComponent;
