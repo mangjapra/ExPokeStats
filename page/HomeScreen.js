@@ -38,7 +38,11 @@ function HomeScreen({ navigation }) {
             return (
               <TouchableOpacity
                 key={index}
-                onPress={() => navigation.navigate("Detail")}
+                onPress={() => 
+                  navigation.navigate("Detail", {
+                    pokemonId: res.id
+                  })
+                }
               >
                 <CardComponent name={res.name} imageSource={res.sprites.other.dream_world.front_default}/>
               </TouchableOpacity>

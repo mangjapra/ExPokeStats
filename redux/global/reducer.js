@@ -2,6 +2,7 @@ import * as type from "./type";
 
 const initialState = {
     listpokemon: null,
+    pokemonbyid: null,
 }
 
 export const reducerGlobal = (state = initialState, action) => {
@@ -10,6 +11,11 @@ export const reducerGlobal = (state = initialState, action) => {
             return {
                 ...state,
                 listpokemon: action.value,
+            }
+        case type.POKEMON_BY_ID:
+            return {
+                ...state,
+                pokemonbyid: action.value,
             }
         default:
             return state;
